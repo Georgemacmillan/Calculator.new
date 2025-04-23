@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1e1e2f;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .calculator {
+      background: #2b2b3d;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #00000088;
+      width: 300px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background: #5a5aff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #3c3cff;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Calculator</h2>
+    <input type="number" id="num1" placeholder="Enter number 1">
+    <input type="number" id="num2" placeholder="Enter number 2 (ignored for SQRT)">
+    <select id="operator">
+      <option value="+">+ (Add)</option>
+      <option value="-">- (Subtract)</option>
+      <option value="*">* (Multiply)</option>
+      <option value="/">/ (Divide)</option>
+      <option value="s">SQRT</option>
+    </select>
+    <button onclick="calculate()">Calculate</button>
+    <h3 id="result">Result: </h3>
+  </div>  <script>
+    function calculate() {
+      let num1 = parseFloat(document.getElementById('num1').value);
+      let num2 = parseFloat(document.getElementById('num2').value);
+      let op = document.getElementById('operator').value;
+      let result;
+
+      switch (op) {
+        case '+':
+          result = num1 + num2;
+          break;
+        case '-':
+          result = num1 - num2;
+          break;
+        case '*':
+          result = num1 * num2;
+          break;
+        case '/':
+          result = num2 !== 0 ? num1 / num2 : 'Error: divide by zero';
+          break;
+        case 's':
+          result = Math.sqrt(num1);
+          break;
+        default:
+          result = 'Invalid operator';
+      }
+      document.getElementById('result').textContent = 'Result: ' + result;
+    }
+  </script></body>
+</html>
